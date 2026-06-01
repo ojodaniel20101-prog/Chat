@@ -91,7 +91,7 @@ export default function MessageList({
 
               {/* Messages */}
               <div className="space-y-1">
-                {group.(messages || []).map((message, index) => {
+                {group.messages.map((message, index) => {
                   const isOwn = message.sender_id === currentUserId;
                   const showAvatar =
                     !isOwn &&
