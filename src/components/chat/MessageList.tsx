@@ -32,7 +32,7 @@ export default function MessageList({
       const date = new Date(message.created_at).toDateString();
       const existingGroup = groups.find((g) => g.date === date);
       if (existingGroup) {
-        existingGroup.(messages || []).push(message);
+        existingGroup.messages.push(message);
       } else {
         groups.push({ date, messages: [message] });
       }
