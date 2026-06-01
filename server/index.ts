@@ -47,6 +47,12 @@ app.use('/api/conversations', conversationRoutes);
 app.use('/api/conversations/:conversationId/messages', messageRoutes);
 app.use('/api/upload', uploadRoutes);
 
+// Serve frontend
+app.use(express.static(path.join(__dirname, '../../dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
