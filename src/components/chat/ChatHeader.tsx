@@ -103,7 +103,7 @@ export default function ChatHeader({
         <div className={`flex items-center transition-all duration-200 ${showSearch ? 'w-48 mr-2' : 'w-0 overflow-hidden'}`}>
           <input
             type="text"
-            placeholder="Search messages..."
+            placeholder="Search (messages || [])..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full h-9 px-3 rounded-lg text-sm outline-none"

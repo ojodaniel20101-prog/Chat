@@ -28,11 +28,11 @@ export default function MessageList({
   // Group messages by date
   const groupedMessages = useMemo(() => {
     const groups: { date: string; messages: Message[] }[] = [];
-    messages.forEach((message) => {
+    (messages || []).forEach((message) => {
       const date = new Date(message.created_at).toDateString();
       const existingGroup = groups.find((g) => g.date === date);
       if (existingGroup) {
-        existingGroup.messages.push(message);
+        existingGroup.(messages || []).push(message);
       } else {
         groups.push({ date, messages: [message] });
       }
@@ -49,7 +49,7 @@ export default function MessageList({
             style={{ borderColor: 'var(--accent-color)', borderTopColor: 'transparent' }}
           />
           <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-            Loading messages...
+            Loading (messages || [])...
           </span>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function MessageList({
 
               {/* Messages */}
               <div className="space-y-1">
-                {group.messages.map((message, index) => {
+                {group.(messages || []).map((message, index) => {
                   const isOwn = message.sender_id === currentUserId;
                   const showAvatar =
                     !isOwn &&
