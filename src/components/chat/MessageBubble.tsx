@@ -76,7 +76,7 @@ export default function MessageBubble({
     }
   })();
 
-  const isRead = readBy.length > 0;
+  const isRead = (readBy || []).length > 0;
 
   // Group reactions by emoji
   const reactionGroups = (message.reactions || []).reduce(
