@@ -93,7 +93,7 @@ export default function ChatApp() {
   const fetchConversations = async () => {
     try {
       const res = await axios.get('/api/conversations');
-      setConversations(res.data);
+      setConversations((res.data || []).map((c: any) => ({ ...c, participants: c.participants || [], reactions: c.reactions || [] })));
     } catch (err) {
       console.error('Failed to fetch conversations:', err);
     }
@@ -296,11 +296,11 @@ export default function ChatApp() {
       const newConv: Conversation = {
         id: res.data.id,
         type: 'direct',
-        name: res.data.participants.find((p: any) => p.user?.id !== user?.id)?.user?.displayName || 'Chat',
-        avatar: res.data.participants.find((p: any) => p.user?.id !== user?.id)?.user?.avatar || null,
-        status: res.data.participants.find((p: any) => p.user?.id !== user?.id)?.user?.status || null,
+        name: (res.data.participants || []).find((p: any) => p.user?.id !== user?.id)?.user?.displayName || 'Chat',
+        avatar: (res.data.participants || []).find((p: any) => p.user?.id !== user?.id)?.user?.avatar || null,
+        status: (res.data.participants || []).find((p: any) => p.user?.id !== user?.id)?.user?.status || null,
         lastSeen: null,
-        participants: res.data.participants.map((p: any) => ({
+        participants: (res.data.participants || []).map((p: any) => ({
           id: p.user?.id,
           displayName: p.user?.displayName,
           avatar: p.user?.avatar,
