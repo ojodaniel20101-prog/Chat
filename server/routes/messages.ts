@@ -14,7 +14,7 @@ router.get('/', authMiddleware, async (req: AuthRequest, res) => {
 
     const messages = await Message.findAll({
       where: {
-        conversation_id: conversationId,
+        conversation_id: conversationId as string,
         deleted: false,
       },
       include: [
@@ -57,7 +57,7 @@ router.get('/search', authMiddleware, async (req: AuthRequest, res) => {
 
     const messages = await Message.findAll({
       where: {
-        conversation_id: conversationId,
+        conversation_id: conversationId as string,
         deleted: false,
         content: { [Op.like]: `%${q}%` },
       },
@@ -122,7 +122,7 @@ router.put('/:messageId', authMiddleware, async (req: AuthRequest, res) => {
     const { content } = req.body;
 
     const message = await Message.findOne({
-      where: { id: messageId, sender_id: req.user!.id },
+      where: { id: messageId as string, sender_id: req.user!.id },
     });
 
     if (!message) {
@@ -161,7 +161,7 @@ router.delete('/:messageId', authMiddleware, async (req: AuthRequest, res) => {
     const { messageId } = req.params;
 
     const message = await Message.findOne({
-      where: { id: messageId, sender_id: req.user!.id },
+      where: { id: messageId as string, sender_id: req.user!.id },
     });
 
     if (!message) {

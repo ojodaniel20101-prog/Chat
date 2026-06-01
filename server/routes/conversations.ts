@@ -46,7 +46,7 @@ router.get('/', authMiddleware, async (req: AuthRequest, res) => {
     });
 
     const conversations = participants.map((p) => {
-      const conv = p.conversation as any;
+      const conv = (p as any).conversation as any;
       const lastMessage = conv.messages?.[0];
       const otherParticipant = conv.participants?.find(
         (part: any) => part.user_id !== req.user!.id
@@ -103,7 +103,7 @@ router.post('/direct', authMiddleware, async (req: AuthRequest, res) => {
       ],
     });
 
-    const conversationIds = existingParticipants.map((p) => p.conversation_id);
+    const conversationIds = existingParticipants.map((p) => (p as any).conversationId);
     const commonConversation = conversationIds.find(
       (id, index) => conversationIds.indexOf(id) !== index
     );
