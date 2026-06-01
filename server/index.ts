@@ -59,7 +59,7 @@ setupSocketHandlers(io);
 const PORT = process.env.PORT || 3001;
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log('Database synced');
     httpServer.listen(PORT, () => {
