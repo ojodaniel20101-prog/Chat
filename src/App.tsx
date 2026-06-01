@@ -3,17 +3,17 @@ import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import ChatApp from './pages/ChatApp';
 
-class ErrorBoundary extends Component<{ children: ReactNode }, { error: string | null }> {
-  state = { error: null };
-  componentDidCatch(error: Error) {
-    this.setState({ error: error.message });
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: string | null; stack: string | null }> {
+  state = { error: null, stack: null };
+  componentDidCatch(error: Error, info: any) {
+    this.setState({ error: error.message, stack: info.componentStack });
   }
   render() {
     if (this.state.error) {
       return (
-        <div style={{ color: 'white', background: '#09090b', padding: 20, height: '100vh' }}>
-          <h2>Error</h2>
-          <pre style={{ color: '#f87171', whiteSpace: 'pre-wrap' }}>{this.state.error}</pre>
+        <div style={{ color: 'white', background: '#09090b', padding: 20, height: '100vh', overflow: 'auto' }}>
+          <h2 style={{ color: '#f87171' }}>Error: {this.state.error}</h2>
+          <pre style={{ color: '#fbbf24', fontSize: 11, whiteSpace: 'pre-wrap' }}>{this.state.stack}</pre>
         </div>
       );
     }
