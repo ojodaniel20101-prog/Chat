@@ -319,12 +319,12 @@ export default function ChatApp() {
   };
 
   // Filter conversations by search
-  const filteredConversations = conversations.filter((c) =>
+  const filteredConversations = (conversations || []).filter((c) =>
     c.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Typing users for active conversation (excluding self)
-  const activeTypingUsers = Object.values(typingUsers).filter(
+  const activeTypingUsers = Object.values(typingUsers || {}).filter(
     (tu) => tu.userId !== user?.id
   );
 
