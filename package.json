@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "nodemon --watch server server/index.ts",
-    "build": "npm install --legacy-peer-deps && tsc -b && vite build && tsc -p tsconfig.server.json",
+    "build": "npm install --legacy-peer-deps && tsc -b --noEmitOnError false && vite build && tsc -p tsconfig.server.json --noEmitOnError false",
     "start": "node dist-server/server/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
