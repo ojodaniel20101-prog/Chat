@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "nodemon --watch server server/index.ts",
-    "build": "tsc -b && vite build && tsc -p tsconfig.server.json",
+    "build": "npm install --legacy-peer-deps && tsc -b && vite build && tsc -p tsconfig.server.json",
     "start": "node dist-server/server/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -75,6 +75,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "@eslint/js": "^9.39.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.19",
