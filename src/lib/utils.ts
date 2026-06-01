@@ -8,6 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 // Generate a consistent color from a name string
 export function getAvatarColor(name: string): string {
+  if (!name) return '#818cf8';
   const colors = [
     '#818cf8', '#34d399', '#fbbf24', '#f87171', '#a78bfa',
     '#60a5fa', '#fb923c', '#e879f9', '#2dd4bf', '#f472b6',
@@ -21,6 +22,7 @@ export function getAvatarColor(name: string): string {
 
 // Get initials from a name
 export function getInitials(name: string): string {
+  if (!name) return '?\`;
   return name
     .split(' ')
     .map((n) => n[0])
