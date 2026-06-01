@@ -85,7 +85,7 @@ router.post('/', authMiddleware, async (req: AuthRequest, res) => {
     const { content, type = 'text', fileUrl, fileName, fileSize } = req.body;
 
     const message = await Message.create({
-      conversationId: parseInt(conversationId),
+      conversationId: parseInt(Array.isArray(conversationId) ? conversationId[0] : conversationId),
       senderId: req.user!.id,
       content: content || '',
       type,
@@ -197,7 +197,7 @@ router.post('/:messageId/reactions', authMiddleware, async (req: AuthRequest, re
     }
 
     const reaction = await Reaction.create({
-      messageId: parseInt(messageId),
+      messageId: parseInt(Array.isArray(messageId) ? messageId[0] : messageId),
       userId: req.user!.id,
       emoji,
     });
