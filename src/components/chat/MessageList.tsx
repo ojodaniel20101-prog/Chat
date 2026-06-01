@@ -61,7 +61,7 @@ export default function MessageList({
       className="flex-1 overflow-y-auto px-4 py-4"
       style={{ backgroundColor: 'var(--bg-base)' }}
     >
-      {messages.length === 0 ? (
+      {(messages || []).length === 0 ? (
         <div className="flex items-center justify-center h-full">
           <div className="text-center">
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -119,7 +119,7 @@ export default function MessageList({
       )}
 
       {/* Typing indicator */}
-      {typingUsers.length > 0 && (
+      {typingUsers typingUsers.length > 0typingUsers.length > 0 typingUsers.length > 0 && (
         <div className="mt-3 ml-4">
           <TypingIndicator userName={typingUsers[0].userName} />
         </div>

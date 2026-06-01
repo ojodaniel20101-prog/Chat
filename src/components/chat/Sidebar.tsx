@@ -131,7 +131,7 @@ export default function Sidebar({
           Conversations
         </div>
         <div className="flex-1 overflow-y-auto px-2 pb-4">
-          {conversations.length === 0 ? (
+          {(conversations || []).length === 0 ? (
             <div className="text-center py-8" style={{ color: 'var(--text-muted)' }}>
               <p className="text-sm">No conversations yet</p>
               <button
