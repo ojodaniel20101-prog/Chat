@@ -2,7 +2,7 @@
   "name": "my-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "nodemon --watch server server/index.ts",
